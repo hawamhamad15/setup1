@@ -1,0 +1,264 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Example Code for Pushbutton
+
+int pushButton = 2;
+void setup() {
+Serial.begin(9600);
+//the setup routine runs once
+//initialize serial communication at 9600 bps:
+pinMode(pushButton, INPUT); //make the pushbutton's pin an input:
+}
+void loop() {
+//the loop routine runs forever:
+int buttonState = digitalRead(pushButton); //read the input pin:
+Serial.println(buttonState);
+//print out the state of the button:
+delay(10);}
+
+
+Example Code for LED
+
+const int led = 8; //usedigital I/O pin 8
+void setup() {
+pinMode(led,OUTPUT); //set pin 8 to be an output output
+}
+void loop() {
+delay(1000);
+//delay 1000 milliseconds
+digitalWrite(led,HIGH); //set pin 8 HIGH, turning on LED
+delay(1000);
+//delay 1000 milliseconds
+digitalWrite(led,LOW); //set pin 8 LOW, turning off LED}
+
+
+
+Code Example of Toggle Switch and LED
+int pushButton = 2;
+int ledPin = 8;
+int x=0;
+void setup() {
+Serial.begin(9600);
+pinMode(pushButton, INPUT);
+pinMode(ledPin, OUTPUT); }
+void loop() {
+while (x<2) {
+if (digitalRead(pushButton)== HIGH)
+x=x+1;
+delay(200);
+switch (x){
+case 0:
+digitalWrite (ledPin, LOW);
+Serial.println("B");
+break;
+case 1:
+digitalWrite (ledPin, HIGH);
+Serial.println("A");
+break;} }
+x=0;
+}
+
+
+
+Tilt Sensor (Code Example)
+
+const int tilt = 4;     
+
+// the number of the tilt pin
+const int ledPin =  13;      
+int buttonState = 0;         
+void setup() {
+// the number of the LED pin
+// variable for reading the pushbutton status
+pinMode(ledPin, OUTPUT); // initialize the LED pin as an output:
+pinMode(tilt, INPUT);       
+// initialize the tilt pin as an input:
+}
+void loop() {
+buttonState = digitalRead(tilt); // read the state of the pushbutton value:
+10. if (buttonState == HIGH) {
+} else {
+11. digitalWrite(ledPin, HIGH); // turn LED on:
+12.
+}}
+13. digitalWrite(ledPin, LOW); // turn LED off:
+
+
+
+
+Code Example RIP MOTETION
+
+int led = 13; 
+int sensor = 2; 
+int val = 0; 
+void setup() {
+// the pin that the LED is atteched to
+// the pin that the sensor is atteched to
+// variable to store the sensor status (value)
+pinMode(led, OUTPUT); // initalize LED as an output
+pinMode(sensor, INPUT); // initialize sensor as an input
+Serial.begin(9600); } 
+// initialize serial
+void loop(){
+val = digitalRead(sensor); // read sensor value
+if (val == HIGH) { 
+// check if the sensor is HIGH
+digitalWrite(led, HIGH); // turn LED ON
+delay(100); 
+// delay 100 milliseconds
+Serial.println("Motion detected!"); 
+} else {
+digitalWrite(led, LOW); // turn LED OFF
+delay(200); 
+// delay 200 milliseconds
+Serial.println("Motion stopped!"); }}
+
+
+Potentiometer Code Example
+int sensorPin = A0; // select the input pin for the potentiometer
+int sensorValue = 0; // variable to store the value coming from the sensor
+void setup() {
+Serial.begin(9600);
+}
+void loop() {
+// read the value from the sensor:
+sensorValue = analogRead(sensorPin); 
+Serial.println(sensorValue);
+. delay(200);
+. }
+
+
+Photoresistor (Code Example)
+int sensorPin = A0; // select the input pin for the potentiometer
+int sensorValue = 0; // variable to store the value coming from the sensor
+void setup() {
+Serial.begin(9600);
+}
+void loop() {
+// read the value from the sensor:
+sensorValue = analogRead(sensorPin); 
+Serial.println(sensorValue);
+. delay(200);
+. }
+
+
+Circuit Schematics 
+
+#include <DHT.h>
+
+#define dataPin 4 // Defines pin number to which the sensor is connected
+DHT dht(dataPin , DHT11);  
+           // Creats a DHT object
+
+void setup() {
+Serial.begin(9600); }
+void loop() {
+float t = dht.temperature; // Gets the values of the temperature
+float h = dht.humidity; // Gets the values of the humidity
+Serial.print("Temperature = ");
+Serial.print(t);
+Serial.print(" *C ");
+Serial.print(" Humidity = ");
+Serial.print(h);
+Serial.println(" % ");
+delay(2000); }  // Delays 2 secods, as the DHT11 sampling rate is 0.5Hz
+
+
+Active Buzzer (Code_Example)
+
+int buzzerPin = 8;
+2. void setup (){
+
+pinMode (buzzerPin, OUTPUT);
+4. }
+5. void loop (){
+
+digitalWrite (buzzerPin, HIGH);
+
+10. }
+delay (500);
+digitalWrite (buzzerPin, LOW);
+delay (500);
+
+How Ultrasonic Works Program code 
+
+
+const int trigPin = 4;
+const int echoPin = 2;
+long duration; 
+// defines variables
+int distance;
+void setup() {
+pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+Serial.begin(9600); }               
+// Starts the serial communication
+void loop() {
+digitalWrite(trigPin, LOW); // Clears the trigPin
+delayMicroseconds(2);
+digitalWrite(trigPin, HIGH); // Sets the trigPin on HIGH state for 10 micro seconds
+delayMicroseconds(10);
+digitalWrite(trigPin, LOW);
+// Reads the echoPin, returns the sound wave travel time in microseconds
+duration = pulseIn(echoPin, HIGH);
+distance= duration*0.034/2; 
+// Calculating the distance
+Serial.print("Distance: ");
+Serial.println(distance);}
+
+
+
+
+
+
+
+
+
+LCD Example Code
+
+
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+char row1[ ]="I'm Arduino";
+char row2[ ]="Hello world!"; 
+int t = 500;
+LiquidCrystal_I2C lcd(0x3F,16,2); // set the LCD address to 0xeF
+void setup(){
+lcd.begin(16, 2);
+lcd.backlight();
+lcd.setCursor(0,0);
+lcd.print("Ayub");
+delay(1000);}
+void loop() {
+lcd.clear();
+lcd.setCursor(15,0);
+for (int positionCounter1 = 0; positionCounter1 < 26; positionCounter1++){
+lcd.scrollDisplayLeft(); 
+lcd.print(row1[positionCounter1]); 
+delay(t);  }
+lcd.setCursor(15,1); // set the cursor to column 15, line 1
+for (int positionCounter = 0; positionCounter < 26; positionCounter++){
+lcd.scrollDisplayLeft(); 
+lcd.print(row2[positionCounter]); 
+delay(t);  }
+}
